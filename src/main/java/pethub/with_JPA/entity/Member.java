@@ -2,10 +2,12 @@ package pethub.with_JPA.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Member {
 
     @Id @GeneratedValue
@@ -21,6 +23,11 @@ public class Member {
 
     @Embedded
     private Address address;
+
+    public Member(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     private String profile;
 
