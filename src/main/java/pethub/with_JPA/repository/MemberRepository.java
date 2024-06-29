@@ -8,4 +8,6 @@ import pethub.with_JPA.entity.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Member findByUsernameAndPassword(String username, String password);
+
+    boolean existsByUsername(String username);
 }

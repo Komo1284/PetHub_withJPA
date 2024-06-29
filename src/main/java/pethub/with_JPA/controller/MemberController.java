@@ -15,4 +15,7 @@ public class MemberController {
 
     @GetMapping("/login")
     public void login() {}
+
+    @GetMapping("/signUp")
+    public void signUp() {}
 }
