@@ -19,7 +19,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         #        show_sql: true
@@ -37,15 +37,18 @@ spring:
         enable: true
         required: true
 
-##s3
-#cloud:
-#  aws:
-#    region:
-#      static: ap-northeast-2
-#    stack:
-#      auto: false
-#    s3:
-#      bucket: itbank-pethub-s3
+#s3
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    credentials:
+      access-key: AKIA2UC3C7EED3L3ZOMW
+      secret-key: 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
+    stack:
+      auto: false
+    s3:
+      bucket: itbank-pethub-s3
 
 logging.level:
   org.hibernate.SQL: debug

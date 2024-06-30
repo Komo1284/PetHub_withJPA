@@ -37,7 +37,7 @@
                                     placeholder="사용하실 아이디를 입력하세요."
                                     required=""
                                     type="text"
-                                    name="userid"
+                                    name="username"
                                     onblur="checkUserId()"
                             />
                             <span id="userid-check"></span>
@@ -56,7 +56,7 @@
                                         placeholder="사용하실 비밀번호를 입력하세요"
                                         required=""
                                         type="password"
-                                        name="userpw"
+                                        name="password"
                                 />
                             </div>
                             <div class="grid gap-2">
@@ -171,7 +171,7 @@
                                         id="zip_code"
                                         type="text"
                                         placeholder="주소를 검색해주세요."
-                                        name="zip_code"
+                                        name="zipcode"
                                         readonly
                                 />
                             </div>
@@ -204,7 +204,7 @@
                                         placeholder="주소를 검색해주세요."
                                         required=""
                                         type="text"
-                                        name="primary_address"
+                                        name="city"
                                         readonly
                                 />
                             </div>
@@ -221,7 +221,7 @@
                                         placeholder="상세주소를 입력해주세요."
                                         required=""
                                         type="text"
-                                        name="address_details"
+                                        name="street"
                                 />
                             </div>
                         </div>
@@ -271,19 +271,6 @@
 <th:block th:if="${msg != null}">
     <script th:inline="javascript">
         let msg = [[${msg}]];
-        alert(msg);
-    </script>
-</th:block>
-<th:block th:if="${row != null}">
-    <script th:inline="javascript">
-        let row = [[${row}]];
-        let msg = "";
-        if (row == 1) {
-            msg = "회원가입이 정상적으로 완료되었습니다.";
-            location.href = "/";
-        } else {
-            msg = "회원가입에 실패하였습니다."
-        }
         alert(msg);
     </script>
 </th:block>

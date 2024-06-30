@@ -66,7 +66,7 @@
                                         <line x1="10" x2="8" y1="3" y2="21"></line>
                                         <line x1="16" x2="14" y1="3" y2="21"></line>
                                     </svg>
-                                    <span th:text="*{userid}">JD123</span>
+                                    <span th:text="*{username}">JD123</span>
                                 </li>
                                 <li class="flex items-center gap-2">
                                     <svg
@@ -125,9 +125,9 @@
                                         <circle cx="12" cy="10" r="3"></circle>
                                     </svg>
                                     <div>
-                                        <p th:text="*{zip_code}">123 Main Street</p>
-                                        <p th:text="*{primary_address}">123 Main Street</p>
-                                        <p th:text="*{address_details}">123 Main Street</p>
+                                        <p th:text="*{address.zipcode}">123 Main Street</p>
+                                        <p th:text="*{address.city}">123 Main Street</p>
+                                        <p th:text="*{address.street}">123 Main Street</p>
                                     </div>
                                 </li>
                             </ul>
