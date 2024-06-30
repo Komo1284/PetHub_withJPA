@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pethub.with_JPA.dto.MemberLoginDto;
 import pethub.with_JPA.dto.SignUpDto;
+import pethub.with_JPA.dto.UpdateMemberDto;
 import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.repository.MemberRepository;
 
@@ -39,5 +40,9 @@ public class MemberService {
             return "회원가입이 완료되었습니다.";
         }
         return "회원가입에 실패하였습니다.";
+    }
+
+    public void update(UpdateMemberDto dto) {
+
     }
 }
