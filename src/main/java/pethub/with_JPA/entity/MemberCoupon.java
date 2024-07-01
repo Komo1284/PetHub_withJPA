@@ -25,4 +25,9 @@ public class MemberCoupon {
 
     private LocalDateTime reg_date = LocalDateTime.now();
     private LocalDateTime end_date = LocalDateTime.now().plusMonths(1);
+
+    public MemberCoupon(Member member, Coupon coupon) {
+        this.member = member;
+        this.coupon = coupon;
+    }
 }

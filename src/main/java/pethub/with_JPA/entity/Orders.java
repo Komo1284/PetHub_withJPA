@@ -29,6 +29,7 @@ public class Orders {
 
     private LocalDateTime order_date = LocalDateTime.now();
 
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus = OrderStatus.ORDER;
 
     @PrePersist

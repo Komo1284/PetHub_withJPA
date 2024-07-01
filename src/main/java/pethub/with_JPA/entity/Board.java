@@ -20,6 +20,7 @@ public class Board {
     private Member member;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private BoardType type;
 
     private String title = "제목 없음";
@@ -28,6 +29,7 @@ public class Board {
     @Column(columnDefinition = "TEXT")
     private String content = "내용 없음";
 
+    @Enumerated(EnumType.STRING)
     private Secret secret = Secret.PUBLIC;
 
     private LocalDateTime w_date = LocalDateTime.now();

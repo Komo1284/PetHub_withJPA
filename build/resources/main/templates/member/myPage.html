@@ -135,9 +135,8 @@
                     </div>
                 </div>
             </div>
-
             <!-- 쿠폰 : 관리자가 아닐경우 -->
-            <th:block th:if="${session.user.role != 2}">
+            <th:block th:if="${session.user.role.name() == 'MEMBER'}">
                 <div class="p-4 md:p-6 mx-8">
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <div class="grid gap-2">
@@ -150,7 +149,7 @@
                                 <div class="grid gap-4 p-6">
                                     <div class="flex items-center justify-between">
                                         <div class="bg-orange-100 px-3 py-1 rounded-full text-sm font-semibold"
-                                             th:text="*{row.coupon_code}">SUMMER25
+                                             th:text="*{row.coupon.code}">SUMMER25
                                         </div>
                                         <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-orange-300 text-primary-foreground hover:bg-orange-200/90 h-9 rounded-md px-3">
                                             <a href="/mall/shop/main">사용하러 가기</a>
@@ -158,20 +157,20 @@
                                     </div>
                                     <div class="grid gap-2">
                                         <h3 class="font-semibold">
-                                            <span th:text="*{row.discount}"></span>
+                                            <span th:text="*{row.coupon.discount}"></span>
                                             <span>% 할인 쿠폰</span>
                                         </h3>
                                         <p class="text-gray-500 dark:text-gray-400 text-sm">
                                             <span>최소 주문금액: </span>
-                                            <span th:text="*{row.minimum_price}" class="mr-4"></span>
+                                            <span th:text="*{row.coupon.min_price}" class="mr-4"></span>
                                             <span>최대 할인금액: </span>
-                                            <span th:text="*{row.discount_limit}"></span>
+                                            <span th:text="*{row.coupon.discount_limit}"></span>
                                         </p>
                                         <p class="text-gray-500 dark:text-gray-400 text-sm">
                                             <span>발급 날짜: </span>
-                                            <span th:text="*{row.coupon_reg_date}" class="mr-4"></span>
+                                            <span th:text="*{row.reg_date}" class="mr-4"></span>
                                             <span>유효 기간: </span>
-                                            <span th:text="*{row.coupon_end_date}"></span>
+                                            <span th:text="*{row.end_date}"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -181,7 +180,7 @@
                 </div>
             </th:block>
             <!-- 쿠폰 : 관리자 일 경우 -->
-            <th:block th:if="${session.user.role == 2 || session.user.role == 1}">
+            <th:block th:if="${session.user.role.name() != 'MEMBER'}">
                 <div class="p-4 md:p-6 mx-8">
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <div class="flex items-center justify-between mb-8 mx-8 mt-4">
@@ -190,7 +189,7 @@
                                 <p class="text-gray-500 dark:text-gray-400">기존에 생성해둔 쿠폰을 멤버전체에게 발급하거나 새로운 쿠폰을 등록하세요!</p>
                             </div>
                             <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-orange-500 text-primary-foreground hover:bg-orange-400/90 h-9 rounded-md px-3"
-                                    onclick="openPopup('newCoupon')">
+                                    onclick="openPopup('/coupon/newCoupon')">
                                 새로운 쿠폰 추가하기
                             </button>
                         </div>
@@ -230,7 +229,7 @@
                 </div>
             </th:block>
             <!-- 관리자 관리 : root 관리자일 경우만 표시 -->
-            <th:block th:if="${session.user.role == 2}">
+            <th:block th:if="${session.user.role.name() == 'OWNER'}">
                 <div class="p-4 md:p-6 mx-8">
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <div class="flex items-center justify-between mb-8 mx-8 mt-4">
@@ -240,7 +239,7 @@
                                     있습니다.</p>
                             </div>
                             <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-orange-500 text-primary-foreground hover:bg-orange-400/90 h-9 rounded-md px-3"
-                                    onclick="openPopup('insert')">
+                                    onclick="openPopup('/admin/insert')">
                                 관리자 추가하기
                             </button>
                         </div>
@@ -258,7 +257,7 @@
                                     </div>
                                     <div class="grid gap-2">
                                         <h3 class="font-semibold" th:text="*{admin.nick}">관리자1의 닉네임</h3>
-                                        <p class="text-gray-500 dark:text-gray-400 text-sm" th:text="*{admin.userid}">
+                                        <p class="text-gray-500 dark:text-gray-400 text-sm" th:text="*{admin.username}">
                                             관리자1의 아이디
                                         </p>
                                         <p class="text-gray-500 dark:text-gray-400 text-sm" th:text="*{admin.email}">
@@ -285,7 +284,7 @@
 </th:block>
 <script>
     function openPopup(method) {
-        window.open('/admin/' + method, 'popupWindow', 'width=600,height=600,scrollbars=yes');
+        window.open(method, 'popupWindow', 'width=600,height=600,scrollbars=yes');
     }
 
     function confirmDelete(adminId) {

@@ -17,6 +17,9 @@ import pethub.with_JPA.dto.MemberLoginDto;
 import pethub.with_JPA.dto.SignUpDto;
 import pethub.with_JPA.dto.UpdateMemberDto;
 import pethub.with_JPA.entity.Member;
+import pethub.with_JPA.entity.Role;
+import pethub.with_JPA.repository.CouponRepository;
+import pethub.with_JPA.repository.MemberCouponRepository;
 import pethub.with_JPA.repository.MemberRepository;
 import pethub.with_JPA.service.EmailService;
 import pethub.with_JPA.service.ImageService;
@@ -35,6 +38,8 @@ public class MemberController {
     private final EmailService emailService;
     private final ImageService imageService;
     private final EntityManager entityManager;
+    private final CouponRepository couponRepository;
+    private final MemberCouponRepository memberCouponRepository;
 
     @GetMapping("/login")
     public void login() {
@@ -65,7 +70,25 @@ public class MemberController {
     }
 
     @GetMapping("/myPage")
-    public void myPage() {
+    public ModelAndView myPage(HttpSession session) {
+        Member user = (Member) session.getAttribute("user");
+        ModelAndView mav = new ModelAndView("member/myPage");
+
+        // 사용가능한 쿠폰 목록
+        if (user.getRole() == Role.MEMBER) {
+            mav.addObject("coupons", memberCouponRepository.findByMember(user));
+        }
+
+        // 발급가능한 쿠폰 목록
+        if (user.getRole() != Role.MEMBER) {
+            mav.addObject("admin_coupons", couponRepository.findAll());
+        }
+
+        // 관리자 목록
+        if (user.getRole() == Role.OWNER) {
+            mav.addObject("admins", memberRepository.findByRole(Role.ADMIN));
+        }
+        return mav;
     }
 
     @GetMapping("/update")

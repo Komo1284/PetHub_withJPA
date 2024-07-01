@@ -13,7 +13,10 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private ItemType itemType;
+
+    @Enumerated(EnumType.STRING)
     private ItemCategory itemCategory;
 
     private String itemName;

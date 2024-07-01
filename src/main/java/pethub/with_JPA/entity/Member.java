@@ -41,7 +41,10 @@ public class Member {
 
     private String profile = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&type=sc960_832";
 
+    @Enumerated(EnumType.STRING)
     private Ad ad;
+
+    @Enumerated(EnumType.STRING)
     private Role role = Role.MEMBER;
 
     public Member(String username, String password) {
