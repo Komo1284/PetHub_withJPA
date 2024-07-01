@@ -1,6 +1,10 @@
 package pethub.with_JPA.controller;
 
 import jakarta.mail.MessagingException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.OptimisticLockException;
+import jakarta.persistence.PersistenceException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -8,17 +12,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import pethub.with_JPA.aop.PasswordEncoder;
 import pethub.with_JPA.dto.MemberLoginDto;
 import pethub.with_JPA.dto.SignUpDto;
 import pethub.with_JPA.dto.UpdateMemberDto;
 import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.repository.MemberRepository;
 import pethub.with_JPA.service.EmailService;
+import pethub.with_JPA.service.ImageService;
 import pethub.with_JPA.service.MemberService;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 @RequestMapping("/member")
@@ -28,9 +33,18 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final EmailService emailService;
+    private final ImageService imageService;
+    private final EntityManager entityManager;
 
     @GetMapping("/login")
-    public void login() {}
+    public void login() {
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:/";
+    }
 
     @PostMapping("/login")
     public ModelAndView login(MemberLoginDto dto, HttpSession session) {
@@ -40,7 +54,8 @@ public class MemberController {
     }
 
     @GetMapping("/signUp")
-    public void signUp() {}
+    public void signUp() {
+    }
 
     @PostMapping("/signUp")
     public ModelAndView signUp(SignUpDto dto) {
@@ -50,19 +65,21 @@ public class MemberController {
     }
 
     @GetMapping("/myPage")
-    public void myPage() {}
+    public void myPage() {
+    }
 
     @GetMapping("/update")
-    public void update() {}
+    public void update() {
+    }
 
     @PostMapping("/update")
-    public void update(UpdateMemberDto dto, MultipartFile file) {
-        // MultipartFile S3서버에 저장후 반환된 URL을 dto에 저장
-        // ~~~
-        dto.setProfile(file.getOriginalFilename());
-
-        memberService.update(dto);
+    public ModelAndView update(UpdateMemberDto dto, HttpSession session, MultipartFile file) throws IOException {
+        Map<String, String> result = memberService.update(dto, session, file);
+        ModelAndView mav = new ModelAndView(result.get("path"));
+        mav.addObject("msg", result.get("msg"));
+        return mav;
     }
+
 
     @PostMapping("/AuthNum")
     @ResponseBody
@@ -74,7 +91,7 @@ public class MemberController {
             return ResponseEntity.badRequest().body("이메일을 입력해주세요.");
         }
 
-        if (memberRepository.existsByEmail(email)){
+        if (memberRepository.existsByEmail(email)) {
             return ResponseEntity.badRequest().body("사용할 수 없는 이메일 입니다.");
         }
 
@@ -83,7 +100,7 @@ public class MemberController {
         session.setAttribute("authNum", random);
 
         // 메일 발송
-        emailService.sendAuthNum(email,random);
+        emailService.sendAuthNum(email, random);
 
         return ResponseEntity.ok("인증번호가 전송되었습니다.");
     }

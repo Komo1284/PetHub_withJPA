@@ -16,6 +16,11 @@ public class Item {
     private ItemType itemType;
     private ItemCategory itemCategory;
 
+    private String itemName;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String itemDescription;
+    private int price;
 
 }

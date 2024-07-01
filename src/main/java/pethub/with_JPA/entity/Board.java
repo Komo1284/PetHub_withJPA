@@ -23,6 +23,9 @@ public class Board {
     private BoardType type;
 
     private String title = "제목 없음";
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String content = "내용 없음";
 
     private Secret secret = Secret.PUBLIC;

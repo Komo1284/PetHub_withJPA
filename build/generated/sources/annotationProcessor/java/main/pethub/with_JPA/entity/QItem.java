@@ -23,7 +23,13 @@ public class QItem extends EntityPathBase<Item> {
 
     public final EnumPath<ItemCategory> itemCategory = createEnum("itemCategory", ItemCategory.class);
 
+    public final StringPath itemDescription = createString("itemDescription");
+
+    public final StringPath itemName = createString("itemName");
+
     public final EnumPath<ItemType> itemType = createEnum("itemType", ItemType.class);
+
+    public final NumberPath<Integer> price = createNumber("price", Integer.class);
 
     public QItem(String variable) {
         super(Item.class, forVariable(variable));

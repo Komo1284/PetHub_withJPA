@@ -57,7 +57,7 @@
                                     class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
                                     id="userpw"
                                     type="password"
-                                    name="userpw"
+                                    name="prevPw"
                             />
                         </div>
                         <div class="mb-4">
@@ -71,7 +71,7 @@
                                     class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
                                     id="newpw"
                                     type="password"
-                                    name="newpw"
+                                    name="newPw"
                             />
                         </div>
                         <div class="mb-4">
@@ -85,7 +85,7 @@
                                     class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
                                     id="pwCheck"
                                     type="password"
-                                    name="pwCheck"
+                                    name="newPwCheck"
                             />
                         </div>
                     </div>
@@ -154,8 +154,8 @@
                                             class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
                                             id="zip_code"
                                             type="text"
-                                            name="zip_code"
-                                            th:value="*{zip_code}"
+                                            name="zipcode"
+                                            th:value="*{address.zipcode}"
                                             readonly
                                     />
                                 </div>
@@ -185,8 +185,8 @@
                                         class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
                                         id="primary_address"
                                         type="text"
-                                        name="primary_address"
-                                        th:value="*{primary_address}"
+                                        name="city"
+                                        th:value="*{address.city}"
                                         readonly
                                 />
                             </div>
@@ -201,8 +201,8 @@
                                         class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
                                         id="address_details"
                                         type="text"
-                                        name="address_details"
-                                        th:value="*{address_details}"
+                                        name="street"
+                                        th:value="*{address.street}"
                                 />
                             </div>
                         </div>

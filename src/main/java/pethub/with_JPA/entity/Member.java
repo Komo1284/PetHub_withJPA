@@ -3,12 +3,14 @@ package pethub.with_JPA.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import pethub.with_JPA.dto.UpdateMemberDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 public class Member {
 
@@ -53,4 +55,13 @@ public class Member {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private Cart cart;
+
+    public void update(UpdateMemberDto dto) {
+        this.password = dto.getNewPw();
+        this.nick = dto.getNick();
+        this.phone = dto.getPhone();
+        this.address = new Address(dto.getStreet(), dto.getCity(), dto.getZipcode());
+        this.profile = dto.getProfile();
+
+    }
 }

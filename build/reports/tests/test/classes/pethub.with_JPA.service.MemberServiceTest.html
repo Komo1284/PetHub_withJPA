@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">1</div>
+<div class="counter">2</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.403s</div>
+<div class="counter">0.488s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,13 @@
 </tr>
 </thead>
 <tr>
+<td class="success">loginTest()</td>
+<td class="success">0.458s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">signUpTest()</td>
-<td class="success">0.403s</td>
+<td class="success">0.030s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,8 +92,9 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>17:53:49.835 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [pethub.with_JPA.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-17:53:49.880 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration pethub.with_JPA.WithJpaApplication for test class pethub.with_JPA.service.MemberServiceTest
+<pre>Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+12:14:33.238 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [pethub.with_JPA.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:14:33.287 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration pethub.with_JPA.WithJpaApplication for test class pethub.with_JPA.service.MemberServiceTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -99,186 +105,57 @@
 
  :: Spring Boot ::                (v3.3.1)
 
-2024-06-29T17:53:50.058+09:00  INFO 4634 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : Starting MemberServiceTest using Java 17.0.8 with PID 4634 (started by komorebi in /Users/komorebi/Desktop/IT_Study/TeamProject/PetHubWithJPA)
-2024-06-29T17:53:50.059+09:00  INFO 4634 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-06-29T17:53:50.329+09:00  INFO 4634 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-29T17:53:50.351+09:00  INFO 4634 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 1 JPA repository interface.
-2024-06-29T17:53:50.536+09:00  INFO 4634 --- [with-JPA] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-29T17:53:50.567+09:00  INFO 4634 --- [with-JPA] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-06-29T17:53:50.583+09:00  INFO 4634 --- [with-JPA] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-29T17:53:50.714+09:00  INFO 4634 --- [with-JPA] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-29T17:53:50.727+09:00  INFO 4634 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-29T17:53:50.763+09:00  INFO 4634 --- [with-JPA] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:tcp://localhost/~/pethub user=SA
-2024-06-29T17:53:50.764+09:00  INFO 4634 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-29T17:53:51.193+09:00  INFO 4634 --- [with-JPA] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-29T17:53:51.198+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists board cascade 
-2024-06-29T17:53:51.201+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists cart cascade 
-2024-06-29T17:53:51.201+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists coupon cascade 
-2024-06-29T17:53:51.201+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists item cascade 
-2024-06-29T17:53:51.202+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists member cascade 
-2024-06-29T17:53:51.203+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists member_coupon cascade 
-2024-06-29T17:53:51.203+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists order_item cascade 
-2024-06-29T17:53:51.203+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists orders cascade 
-2024-06-29T17:53:51.204+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists reply cascade 
-2024-06-29T17:53:51.206+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table board (
-        secret tinyint check (secret between 0 and 1),
-        type tinyint not null check (type between 0 and 5),
-        v_count integer not null,
-        board_id bigint generated by default as identity,
-        member_id bigint not null,
-        w_date timestamp(6),
-        content varchar(255),
-        title varchar(255),
-        primary key (board_id)
-    )
-2024-06-29T17:53:51.207+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table cart (
-        cart_id bigint generated by default as identity,
-        primary key (cart_id)
-    )
-2024-06-29T17:53:51.207+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table coupon (
-        discount integer not null,
-        discount_limit integer not null,
-        min_price integer not null,
-        coupon_id bigint generated by default as identity,
-        code varchar(255),
-        primary key (coupon_id)
-    )
-2024-06-29T17:53:51.208+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table item (
-        item_category tinyint check (item_category between 0 and 6),
-        item_type tinyint check (item_type between 0 and 4),
-        item_id bigint generated by default as identity,
-        primary key (item_id)
-    )
-2024-06-29T17:53:51.209+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table member (
-        ad tinyint check (ad between 0 and 1),
-        role tinyint check (role between 0 and 2),
-        cart_id bigint unique,
-        member_id bigint generated by default as identity,
-        city varchar(255),
-        email varchar(255),
-        name varchar(255),
-        nick varchar(255),
-        password varchar(255),
-        phone varchar(255),
-        profile varchar(255),
-        street varchar(255),
-        username varchar(255),
-        zipcode varchar(255),
-        primary key (member_id)
-    )
-2024-06-29T17:53:51.210+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table member_coupon (
-        coupon_id bigint,
-        end_date timestamp(6),
-        member_coupon_id bigint generated by default as identity,
-        member_id bigint,
-        reg_date timestamp(6),
-        primary key (member_coupon_id)
-    )
-2024-06-29T17:53:51.211+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table order_item (
-        quantity integer not null,
-        cart_id bigint,
-        item_id bigint,
-        order_id bigint,
-        order_item_id bigint generated by default as identity,
-        primary key (order_item_id)
-    )
-2024-06-29T17:53:51.211+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table orders (
-        order_status tinyint check (order_status between 0 and 6),
-        member_id bigint not null,
-        order_date timestamp(6),
-        order_id bigint generated by default as identity,
-        city varchar(255),
-        street varchar(255),
-        zipcode varchar(255),
-        primary key (order_id)
-    )
-2024-06-29T17:53:51.212+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    create table reply (
-        board_id bigint not null,
-        member_id bigint not null,
-        reply_id bigint generated by default as identity,
-        w_date timestamp(6),
-        content varchar(255),
-        primary key (reply_id)
-    )
-2024-06-29T17:53:51.213+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists board 
-       add constraint FKsds8ox89wwf6aihinar49rmfy 
-       foreign key (member_id) 
-       references member
-2024-06-29T17:53:51.214+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists member 
-       add constraint FK5k4esj8icuux45t6rvtbe3fr0 
-       foreign key (cart_id) 
-       references cart
-2024-06-29T17:53:51.215+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists member_coupon 
-       add constraint FKkxw7ja7v55gk4a368w3gs6s0j 
-       foreign key (coupon_id) 
-       references coupon
-2024-06-29T17:53:51.215+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists member_coupon 
-       add constraint FKf8n3lu0dfwmhvcikamg220lgg 
-       foreign key (member_id) 
-       references member
-2024-06-29T17:53:51.216+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists order_item 
-       add constraint FKkgu3wv2n7r2shg2wbvc4nsu7l 
-       foreign key (cart_id) 
-       references cart
-2024-06-29T17:53:51.217+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists order_item 
-       add constraint FKija6hjjiit8dprnmvtvgdp6ru 
-       foreign key (item_id) 
-       references item
-2024-06-29T17:53:51.218+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists order_item 
-       add constraint FKt4dc2r9nbvbujrljv3e23iibt 
-       foreign key (order_id) 
-       references orders
-2024-06-29T17:53:51.220+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists orders 
-       add constraint FKpktxwhj3x9m4gth5ff6bkqgeb 
-       foreign key (member_id) 
-       references member
-2024-06-29T17:53:51.221+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists reply 
-       add constraint FKcs9hiip0bv9xxfrgoj0lwv2dt 
-       foreign key (board_id) 
-       references board
-2024-06-29T17:53:51.221+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
-    alter table if exists reply 
-       add constraint FKen6vrmi5oth4bg6ybfc202fmu 
-       foreign key (member_id) 
-       references member
-2024-06-29T17:53:51.223+09:00  INFO 4634 --- [with-JPA] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-29T17:53:51.406+09:00  WARN 4634 --- [with-JPA] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-29T17:53:51.581+09:00  INFO 4634 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : Started MemberServiceTest in 1.636 seconds (process running for 2.182)
-2024-06-29T17:53:51.872+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-01T12:14:33.457+09:00  INFO 3267 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : Starting MemberServiceTest using Java 17.0.8 with PID 3267 (started by komorebi in /Users/komorebi/Desktop/IT_Study/TeamProject/PetHubWithJPA)
+2024-07-01T12:14:33.457+09:00  INFO 3267 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-07-01T12:14:33.723+09:00  INFO 3267 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-01T12:14:33.744+09:00  INFO 3267 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 1 JPA repository interface.
+2024-07-01T12:14:33.923+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-01T12:14:33.949+09:00  INFO 3267 --- [with-JPA] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-01T12:14:33.962+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-01T12:14:34.084+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-01T12:14:34.095+09:00  INFO 3267 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-01T12:14:34.151+09:00  INFO 3267 --- [with-JPA] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:tcp://localhost/~/pethub user=SA
+2024-07-01T12:14:34.152+09:00  INFO 3267 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-01T12:14:34.585+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-01T12:14:34.586+09:00  INFO 3267 --- [with-JPA] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-01T12:14:35.004+09:00  WARN 3267 --- [with-JPA] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-01T12:14:35.161+09:00  INFO 3267 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : Started MemberServiceTest in 1.819 seconds (process running for 2.277)
+2024-07-01T12:14:35.486+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
-2024-06-29T17:53:51.958+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-01T12:14:35.592+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+    select
+        m1_0.member_id,
+        m1_0.ad,
+        m1_0.city,
+        m1_0.street,
+        m1_0.zipcode,
+        m1_0.cart_id,
+        m1_0.email,
+        m1_0.name,
+        m1_0.nick,
+        m1_0.password,
+        m1_0.phone,
+        m1_0.profile,
+        m1_0.role,
+        m1_0.username 
+    from
+        member m1_0 
+    where
+        m1_0.username=? 
+        and m1_0.password=?
+2024-07-01T12:14:35.629+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2024-07-01T12:14:35.633+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -287,7 +164,7 @@
         m1_0.username=? 
     fetch
         first ? rows only
-2024-06-29T17:53:51.961+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-01T12:14:35.637+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -296,7 +173,7 @@
         m1_0.username=? 
     fetch
         first ? rows only
-2024-06-29T17:53:51.962+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-01T12:14:35.639+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -305,7 +182,7 @@
         m1_0.username=? 
     fetch
         first ? rows only
-2024-06-29T17:53:51.964+09:00 DEBUG 4634 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-01T12:14:35.648+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
@@ -323,7 +200,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.8</a> at 2024. 6. 29. 오후 5:53:52</p>
+<a href="http://www.gradle.org">Gradle 8.8</a> at 2024. 7. 1. 오후 12:14:35</p>
 </div>
 </div>
 </body>

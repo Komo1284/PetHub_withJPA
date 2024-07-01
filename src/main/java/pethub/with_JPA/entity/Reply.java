@@ -23,6 +23,8 @@ public class Reply {
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String content = "내용 없음";
 
     private LocalDateTime w_date = LocalDateTime.now();
