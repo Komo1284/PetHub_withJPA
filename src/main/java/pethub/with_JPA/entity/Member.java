@@ -28,6 +28,30 @@ public class Member {
     @Embedded
     private Address address;
 
+
+    private String profile = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&type=sc960_832";
+
+    @Enumerated(EnumType.STRING)
+    private Ad ad;
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.MEMBER;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Orders> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MemberCoupon> memberCoupons = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    public Member(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public Member(String username, String password, String name, String nick, String email, Address address, String phone, Ad ad) {
         this.username = username;
         this.password = password;
@@ -38,26 +62,6 @@ public class Member {
         this.phone = phone;
         this.ad = ad;
     }
-
-    private String profile = "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&type=sc960_832";
-
-    @Enumerated(EnumType.STRING)
-    private Ad ad;
-
-    @Enumerated(EnumType.STRING)
-    private Role role = Role.MEMBER;
-
-    public Member(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Orders> orders = new ArrayList<>();
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
 
     public void update(UpdateMemberDto dto) {
         this.password = dto.getNewPw();

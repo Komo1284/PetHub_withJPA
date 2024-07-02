@@ -6,10 +6,13 @@ import pethub.with_JPA.entity.Coupon;
 import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.entity.MemberCoupon;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface MemberCouponRepository extends JpaRepository<MemberCoupon, Long> {
 
     List<MemberCoupon> findByMember(Member user);
+
+    void deleteByEndDateBefore(LocalDateTime now);
 }

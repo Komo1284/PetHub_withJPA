@@ -168,9 +168,9 @@
                                         </p>
                                         <p class="text-gray-500 dark:text-gray-400 text-sm">
                                             <span>발급 날짜: </span>
-                                            <span th:text="*{row.reg_date}" class="mr-4"></span>
+                                            <span th:text="*{row.regDate}" class="mr-4"></span>
                                             <span>유효 기간: </span>
-                                            <span th:text="*{row.end_date}"></span>
+                                            <span th:text="*{row.endDate}"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -312,7 +312,7 @@
 
         if (result) {
             // 사용자가 확인을 클릭한 경우
-            window.location.href = '/admin/' + message + '/' + id;
+            window.location.href = '/coupon/' + message + '/' + id;
         } else {
             // 사용자가 취소를 클릭한 경우
             // 아무 작업도 수행하지 않음

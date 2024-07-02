@@ -23,8 +23,19 @@ public class MemberCoupon {
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
 
-    private LocalDateTime reg_date = LocalDateTime.now();
-    private LocalDateTime end_date = LocalDateTime.now().plusMonths(1);
+    private LocalDateTime regDate;
+    private LocalDateTime endDate;
+
+    public void setCoupon(Coupon coupon) {
+        this.coupon = coupon;
+        coupon.getMemberCoupons().add(this);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.regDate = LocalDateTime.now();
+        this.endDate = this.regDate.plusMonths(1);
+    }
 
     public MemberCoupon(Member member, Coupon coupon) {
         this.member = member;

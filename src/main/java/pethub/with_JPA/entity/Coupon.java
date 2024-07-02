@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -17,6 +20,9 @@ public class Coupon {
     private int discount;
     private int min_price;
     private int discount_limit;
+
+    @OneToMany(mappedBy = "coupon", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MemberCoupon> memberCoupons = new ArrayList<>();
 
     public Coupon(String code, int discount, int min_price, int discount_limit) {
         this.code = code;
