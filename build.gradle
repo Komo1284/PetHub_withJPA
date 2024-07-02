@@ -34,6 +34,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 
 	implementation 'com.amazonaws:aws-java-sdk-core:1.12.526'
 	implementation 'software.amazon.awssdk:s3:2.17.89'
