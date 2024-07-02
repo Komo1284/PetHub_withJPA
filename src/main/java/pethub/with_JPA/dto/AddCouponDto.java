@@ -13,7 +13,7 @@ public class AddCouponDto {
 
     public Coupon setCoupon() {
         return new Coupon(
-                code, discount, min_price, discount
+                code, discount, min_price, discount_limit
         );
     }
 }
