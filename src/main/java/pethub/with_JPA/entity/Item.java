@@ -21,9 +21,27 @@ public class Item {
 
     private String itemName;
 
+    private String itemProfile = "https://japan.ybmclass.com/common_css/img/noimage.gif";
+
     @Lob
     @Column(columnDefinition = "TEXT")
     private String itemDescription;
     private int price;
 
+    public Item(String itemName, ItemCategory itemCategory, ItemType itemType, int price, String itemDescription, String itemProfile) {
+        this.itemType = itemType;
+        this.itemCategory = itemCategory;
+        this.itemName = itemName;
+        this.itemProfile = itemProfile;
+        this.itemDescription = itemDescription;
+        this.price = price;
+    }
+
+    public Item(String itemName, ItemCategory itemCategory, ItemType itemType, int price, String itemDescription) {
+        this.itemType = itemType;
+        this.itemCategory = itemCategory;
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.price = price;
+    }
 }

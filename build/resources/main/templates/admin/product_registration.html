@@ -24,7 +24,7 @@
                 <div class="bg-gray-200 rounded-lg shadow-md p-6">
                     <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">신규 상품 등록하기</h1>
                     <p class="mt-4 max-w-3xl text-lg text-gray-500">아래 양식을 작성하여 쇼핑몰에 새 제품을 추가하세요.</p>
-                    <form class="mt-8 space-y-8 divide-y divide-gray-200" enctype="multipart/form-data" METHOD="post">
+                    <form class="mt-8 space-y-8 divide-y divide-gray-200" enctype="multipart/form-data" METHOD="post" action="/admin/product_registration">
                         <div class="space-y-8 divide-y divide-gray-200">
                             <div>
                                 <div>
@@ -35,7 +35,7 @@
                                     <div class="sm:col-span-4">
                                         <div class="flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                             <div class="flex items-center gap-4">
-                                                <img src="https://itbank-pethub-s3.s3.ap-northeast-2.amazonaws.com/noimage.gif"
+                                                <img src="https://japan.ybmclass.com/common_css/img/noimage.gif"
                                                      alt="product_pic"
                                                      width="400" height="400"
                                                      id="profile_picture">
@@ -74,9 +74,10 @@
                                             <input
                                                     id="product-name"
                                                     type="text"
-                                                    name="name"
+                                                    name="itemName"
                                                     class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                                                     control-id="ControlID-18"
+                                                    required
                                             />
                                         </div>
                                     </div>
@@ -87,16 +88,15 @@
                                         <div class="mt-1">
                                             <select
                                                     id="product-type"
-                                                    name="type"
+                                                    name="itemType"
                                                     class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                                                     control-id="ControlID-19"
                                             >
                                                 <option value="">어떤 동물의 제품인가요?</option>
-                                                <option value="1">강아지</option>
-                                                <option value="2">고양이</option>
-                                                <option value="3">애완조</option>
-                                                <option value="4">물고기</option>
-                                                <option value="5">기타</option>
+                                                <option th:each="itemType : ${itemTypes}"
+                                                        th:value="${itemType.name()}"
+                                                        th:text="${itemType.name()}">
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -107,18 +107,15 @@
                                         <div class="mt-1">
                                             <select
                                                     id="product-category"
-                                                    name="category"
+                                                    name="itemCategory"
                                                     class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                                                     control-id="ControlID-20"
                                             >
-                                                <option value="">카테고리를 선택하세요.</option>
-                                                <option value="1">사료</option>
-                                                <option value="2">간식</option>
-                                                <option value="3">위생</option>
-                                                <option value="4">미용</option>
-                                                <option value="5">장난감</option>
-                                                <option value="6">가구</option>
-                                                <option value="7">기타</option>
+                                                <option value="">카테고리를 선택하세요</option>
+                                                <option th:each="itemCategory : ${itemCategories}"
+                                                        th:value="${itemCategory.name()}"
+                                                        th:text="${itemCategory.name()}">
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -139,6 +136,7 @@
                                                     step="10"
                                                     min="0"
                                                     control-id="ControlID-21"
+                                                    required
                                             />
                                         </div>
                                     </div>
@@ -150,7 +148,7 @@
                                         <div class="mt-1">
               <textarea
                       id="product-description"
-                      name="detail"
+                      name="itemDescription"
                       rows="4"
                       class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md"
                       control-id="ControlID-23"
@@ -186,10 +184,8 @@
 </div>
 <th:block th:if="${msg != null}">
     <script th:inline="javascript">
-
         let msg = [[${msg}]];
         alert(msg);
-        location.reload();
     </script>
 </th:block>
 <script>

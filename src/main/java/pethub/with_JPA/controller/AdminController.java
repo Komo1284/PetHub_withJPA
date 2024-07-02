@@ -3,14 +3,21 @@ package pethub.with_JPA.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import pethub.with_JPA.dto.AddItemDto;
+import pethub.with_JPA.entity.ItemCategory;
+import pethub.with_JPA.entity.ItemType;
 import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.entity.Role;
 import pethub.with_JPA.repository.MemberRepository;
+import pethub.with_JPA.service.AdminService;
+import pethub.with_JPA.service.ImageService;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -18,6 +25,8 @@ import java.io.IOException;
 public class AdminController {
 
     private final MemberRepository memberRepository;
+    private final ImageService imageService;
+    private final AdminService adminService;
 
     @GetMapping("/insert")
     public void adminInsert() {}
@@ -49,35 +58,24 @@ public class AdminController {
     }
 
     @GetMapping("/product_registration")
-    public void adminProductRegistration() {}
+    public void AddItem(Model model, @RequestParam(required = false) String msg) {
+        model.addAttribute("itemTypes", ItemType.values());
+        model.addAttribute("itemCategories", ItemCategory.values());
+        if (msg != null) {
+            model.addAttribute("msg", msg);
+        }
+    }
 
-//    @PostMapping("/product_registration")
-//    public ModelAndView adminProductRegistration(ItemVO item, MultipartFile file) throws IOException {
-//        ModelAndView mav = new ModelAndView("admin/product_registration");
-//        String msg;
-//
-//        if (item.getType() == 0) {
-//            msg = "제품의 타입을 선택해주세요.";
-//            mav.addObject("msg", msg);
-//            return mav;
-//        } else if (item.getCategory() == 0) {
-//            msg = "제품의 카테고리를 선택해주세요.";
-//            mav.addObject("msg", msg);
-//            return mav;
-//        }
-//
-//        item.setPic(is.imageUploadFromFile(file));
-//        int result = as.AddProduct(item);
-//        if (result == 1) {
-//            msg = "상품등록에 성공하였습니다.";
-//        } else {
-//            msg = "상품등록중 에러가 발생하였습니다.";
-//        }
-//
-//        mav.addObject("msg", msg);
-//        return mav;
+    @PostMapping("/product_registration")
+    public ModelAndView AddItem(AddItemDto dto, MultipartFile file) throws IOException {
+        ModelAndView mav = new ModelAndView();
 
-//    }
+        Map<String, String> result = adminService.AddProduct(dto, file);
+        mav.addObject("msg", result.get("msg"));
+        mav.setViewName(result.get("path"));
+        return mav;
+    }
+
 //    @GetMapping("/manage_orders/{id}")
 //    public ModelAndView adminManageOrders(@PathVariable("id") int id) {
 //        ModelAndView mav = new ModelAndView("admin/manage_orders");
