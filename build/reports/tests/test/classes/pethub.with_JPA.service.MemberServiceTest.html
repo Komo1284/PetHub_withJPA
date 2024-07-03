@@ -29,7 +29,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.488s</div>
+<div class="counter">0.116s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">50%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,13 +61,37 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Tests</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Standard output</a>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard output</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="loginTest()"></a>
+<h3 class="failures">loginTest()</h3>
+<span class="code">
+<pre>org.opentest4j.AssertionFailedError: 
+expected: pethub.with_JPA.entity.Member@72de1d86
+ but was: null
+	at java.base@17.0.8/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base@17.0.8/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base@17.0.8/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base@17.0.8/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at app//pethub.with_JPA.service.MemberServiceTest.loginTest(MemberServiceTest.java:33)
+	at java.base@17.0.8/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base@17.0.8/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base@17.0.8/java.util.ArrayList.forEach(ArrayList.java:1511)
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -78,56 +102,34 @@
 </tr>
 </thead>
 <tr>
-<td class="success">loginTest()</td>
-<td class="success">0.458s</td>
-<td class="success">passed</td>
+<td class="failures">loginTest()</td>
+<td class="failures">0.102s</td>
+<td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">signUpTest()</td>
-<td class="success">0.030s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
-12:14:33.238 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [pethub.with_JPA.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-12:14:33.287 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration pethub.with_JPA.WithJpaApplication for test class pethub.with_JPA.service.MemberServiceTest
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
-
- :: Spring Boot ::                (v3.3.1)
-
-2024-07-01T12:14:33.457+09:00  INFO 3267 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : Starting MemberServiceTest using Java 17.0.8 with PID 3267 (started by komorebi in /Users/komorebi/Desktop/IT_Study/TeamProject/PetHubWithJPA)
-2024-07-01T12:14:33.457+09:00  INFO 3267 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-07-01T12:14:33.723+09:00  INFO 3267 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-07-01T12:14:33.744+09:00  INFO 3267 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 1 JPA repository interface.
-2024-07-01T12:14:33.923+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-07-01T12:14:33.949+09:00  INFO 3267 --- [with-JPA] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-07-01T12:14:33.962+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-07-01T12:14:34.084+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-07-01T12:14:34.095+09:00  INFO 3267 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-07-01T12:14:34.151+09:00  INFO 3267 --- [with-JPA] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:tcp://localhost/~/pethub user=SA
-2024-07-01T12:14:34.152+09:00  INFO 3267 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-07-01T12:14:34.585+09:00  INFO 3267 --- [with-JPA] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-07-01T12:14:34.586+09:00  INFO 3267 --- [with-JPA] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-07-01T12:14:35.004+09:00  WARN 3267 --- [with-JPA] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-07-01T12:14:35.161+09:00  INFO 3267 --- [with-JPA] [    Test worker] p.with_JPA.service.MemberServiceTest     : Started MemberServiceTest in 1.819 seconds (process running for 2.277)
-2024-07-01T12:14:35.486+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+<pre>2024-07-03T13:56:23.961+09:00  INFO 5131 --- [with-JPA] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pethub.with_JPA.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-07-03T13:56:23.964+09:00  INFO 5131 --- [with-JPA] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pethub.with_JPA.WithJpaApplication for test class pethub.with_JPA.service.MemberServiceTest
+2024-07-03T13:56:23.982+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
-2024-07-01T12:14:35.592+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-03T13:56:23.985+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583985 | took 1ms | statement | connection 2| url jdbc:h2:tcp://localhost/~/pethub
+insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,default)
+insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1111',NULL,'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&amp;type=sc960_832','MEMBER','test',default);
+hashPw = 33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e
+2024-07-03T13:56:24.037+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id,
         m1_0.ad,
@@ -148,14 +150,23 @@
     where
         m1_0.username=? 
         and m1_0.password=?
-2024-07-01T12:14:35.629+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-03T13:56:24.039+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584039 | took 0ms | statement | connection 2| url jdbc:h2:tcp://localhost/~/pethub
+select m1_0.member_id,m1_0.ad,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.cart_id,m1_0.email,m1_0.name,m1_0.nick,m1_0.password,m1_0.phone,m1_0.profile,m1_0.role,m1_0.username from member m1_0 where m1_0.username=? and m1_0.password=?
+select m1_0.member_id,m1_0.ad,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.cart_id,m1_0.email,m1_0.name,m1_0.nick,m1_0.password,m1_0.phone,m1_0.profile,m1_0.role,m1_0.username from member m1_0 where m1_0.username='test' and m1_0.password='33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e';
+2024-07-03T13:56:24.066+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584066 | took 0ms | rollback | connection 2| url jdbc:h2:tcp://localhost/~/pethub
+
+;
+2024-07-03T13:56:24.071+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
-2024-07-01T12:14:35.633+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-03T13:56:24.072+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584072 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,default)
+insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1111',NULL,'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&amp;type=sc960_832','MEMBER','test',default);
+2024-07-03T13:56:24.074+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -164,7 +175,10 @@
         m1_0.username=? 
     fetch
         first ? rows only
-2024-07-01T12:14:35.637+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-03T13:56:24.075+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584075 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+select m1_0.member_id from member m1_0 where m1_0.username=? fetch first ? rows only
+select m1_0.member_id from member m1_0 where m1_0.username='test1' fetch first 1 rows only;
+2024-07-03T13:56:24.075+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -173,7 +187,10 @@
         m1_0.username=? 
     fetch
         first ? rows only
-2024-07-01T12:14:35.639+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-03T13:56:24.076+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584076 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+select m1_0.member_id from member m1_0 where m1_0.username=? fetch first ? rows only
+select m1_0.member_id from member m1_0 where m1_0.username='test' fetch first 1 rows only;
+2024-07-03T13:56:24.077+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -182,13 +199,22 @@
         m1_0.username=? 
     fetch
         first ? rows only
-2024-07-01T12:14:35.648+09:00 DEBUG 3267 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-03T13:56:24.077+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584077 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+select m1_0.member_id from member m1_0 where m1_0.username=? fetch first ? rows only
+select m1_0.member_id from member m1_0 where m1_0.username='test2' fetch first 1 rows only;
+2024-07-03T13:56:24.078+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2024-07-03T13:56:24.079+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584079 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,default)
+insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values ('ACCEPT','동래','부산','44444',NULL,'test@gamil.com','테스트','테스트1','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','01012341234','https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&amp;type=sc960_832','MEMBER','test2',default);
+2024-07-03T13:56:24.083+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584083 | took 0ms | rollback | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+
+;
 </pre>
 </span>
 </div>
@@ -200,7 +226,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.8</a> at 2024. 7. 1. 오후 12:14:35</p>
+<a href="http://www.gradle.org">Gradle 8.8</a> at 2024. 7. 3. 오후 1:56:24</p>
 </div>
 </div>
 </body>

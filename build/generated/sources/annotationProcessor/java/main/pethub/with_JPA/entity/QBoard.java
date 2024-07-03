@@ -28,8 +28,6 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final QMember member;
 
-    public final EnumPath<Secret> secret = createEnum("secret", Secret.class);
-
     public final StringPath title = createString("title");
 
     public final EnumPath<BoardType> type = createEnum("type", BoardType.class);

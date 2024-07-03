@@ -29,9 +29,6 @@ public class Board {
     @Column(columnDefinition = "TEXT")
     private String content = "내용 없음";
 
-    @Enumerated(EnumType.STRING)
-    private Secret secret = Secret.PUBLIC;
-
     private LocalDateTime w_date = LocalDateTime.now();
-    private int v_count;
+    private int v_count = 0;
 }

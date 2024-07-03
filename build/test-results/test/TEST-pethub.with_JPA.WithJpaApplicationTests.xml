@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pethub.with_JPA.WithJpaApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-07-03T04:56:23" hostname="Komorebiui-MacBookAir.local" time="0.247">
+  <properties/>
+  <testcase name="contextLoads()" classname="pethub.with_JPA.WithJpaApplicationTests" time="0.247"/>
+  <system-out><![CDATA[Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+13:56:21.842 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [pethub.with_JPA.WithJpaApplicationTests]: WithJpaApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:56:21.883 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration pethub.with_JPA.WithJpaApplication for test class pethub.with_JPA.WithJpaApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.1)
+
+2024-07-03T13:56:22.034+09:00  INFO 5131 --- [with-JPA] [    Test worker] p.with_JPA.WithJpaApplicationTests       : Starting WithJpaApplicationTests using Java 17.0.8 with PID 5131 (started by komorebi in /Users/komorebi/Desktop/IT_Study/TeamProject/PetHubWithJPA)
+2024-07-03T13:56:22.035+09:00  INFO 5131 --- [with-JPA] [    Test worker] p.with_JPA.WithJpaApplicationTests       : No active profile set, falling back to 1 default profile: "default"
+2024-07-03T13:56:22.272+09:00  INFO 5131 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03T13:56:22.298+09:00  INFO 5131 --- [with-JPA] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 5 JPA repository interfaces.
+2024-07-03T13:56:22.505+09:00  INFO 5131 --- [with-JPA] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03T13:56:22.525+09:00  INFO 5131 --- [with-JPA] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-03T13:56:22.538+09:00  INFO 5131 --- [with-JPA] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-03T13:56:22.641+09:00  INFO 5131 --- [with-JPA] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03T13:56:22.651+09:00  INFO 5131 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-03T13:56:22.693+09:00  INFO 5131 --- [with-JPA] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:tcp://localhost/~/pethub user=SA
+2024-07-03T13:56:22.694+09:00  INFO 5131 --- [with-JPA] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-03T13:56:23.096+09:00  INFO 5131 --- [with-JPA] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03T13:56:23.111+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583111 | took 3ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from INFORMATION_SCHEMA.SEQUENCES
+select * from INFORMATION_SCHEMA.SEQUENCES;
+2024-07-03T13:56:23.116+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists board 
+       alter column content set data type TEXT
+2024-07-03T13:56:23.120+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583120 | took 2ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+
+    alter table if exists board 
+       alter column content set data type TEXT
+
+    alter table if exists board 
+       alter column content set data type TEXT;
+2024-07-03T13:56:23.120+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists item 
+       alter column item_description set data type TEXT
+2024-07-03T13:56:23.121+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583121 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+
+    alter table if exists item 
+       alter column item_description set data type TEXT
+
+    alter table if exists item 
+       alter column item_description set data type TEXT;
+2024-07-03T13:56:23.121+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists reply 
+       alter column content set data type TEXT
+2024-07-03T13:56:23.122+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583122 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+
+    alter table if exists reply 
+       alter column content set data type TEXT
+
+    alter table if exists reply 
+       alter column content set data type TEXT;
+2024-07-03T13:56:23.126+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583126 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0;
+2024-07-03T13:56:23.128+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583128 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."CART" where 1=0
+select * from "PETHUB"."PUBLIC"."CART" where 1=0;
+2024-07-03T13:56:23.128+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583128 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."COUPON" where 1=0
+select * from "PETHUB"."PUBLIC"."COUPON" where 1=0;
+2024-07-03T13:56:23.129+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583129 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0;
+2024-07-03T13:56:23.130+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583130 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."CART" where 1=0
+select * from "PETHUB"."PUBLIC"."CART" where 1=0;
+2024-07-03T13:56:23.131+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583131 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."ITEM" where 1=0
+select * from "PETHUB"."PUBLIC"."ITEM" where 1=0;
+2024-07-03T13:56:23.132+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583132 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."ORDERS" where 1=0
+select * from "PETHUB"."PUBLIC"."ORDERS" where 1=0;
+2024-07-03T13:56:23.133+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583133 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0;
+2024-07-03T13:56:23.134+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583134 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."BOARD" where 1=0
+select * from "PETHUB"."PUBLIC"."BOARD" where 1=0;
+2024-07-03T13:56:23.134+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583134 | took 0ms | statement | connection 1| url jdbc:h2:tcp://localhost/~/pethub
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0
+select * from "PETHUB"."PUBLIC"."MEMBER" where 1=0;
+2024-07-03T13:56:23.135+09:00  INFO 5131 --- [with-JPA] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03T13:56:23.542+09:00  WARN 5131 --- [with-JPA] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03T13:56:23.706+09:00  INFO 5131 --- [with-JPA] [    Test worker] p.with_JPA.WithJpaApplicationTests       : Started WithJpaApplicationTests in 1.775 seconds (process running for 2.279)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
