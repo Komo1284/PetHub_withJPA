@@ -26,6 +26,7 @@ public class BoardController {
         model.addAttribute("posts", result.getContent());
         model.addAttribute("page", result);
         model.addAttribute("condition", condition);
+
         return "board/list";
     }
 }
