@@ -71,4 +71,8 @@ public class Member {
         this.profile = dto.getProfile();
 
     }
+
+    public void setNewPassword(String encode) {
+        this.password = encode;
+    }
 }

@@ -16,6 +16,7 @@ import pethub.with_JPA.aop.PasswordEncoder;
 import pethub.with_JPA.dto.MemberLoginDto;
 import pethub.with_JPA.dto.SignUpDto;
 import pethub.with_JPA.dto.UpdateMemberDto;
+import pethub.with_JPA.dto.findMemberDto;
 import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.entity.Role;
 import pethub.with_JPA.repository.CouponRepository;
@@ -55,6 +56,40 @@ public class MemberController {
     public ModelAndView login(MemberLoginDto dto, HttpSession session) {
         ModelAndView mav = new ModelAndView("redirect:/");
         session.setAttribute("user", memberService.login(dto));
+        return mav;
+    }
+
+    @GetMapping("/findAcc")
+    public void findAcc() {}
+
+    @PostMapping("/findId")
+    public ModelAndView findId(findMemberDto dto, HttpSession session) {
+        ModelAndView mav = new ModelAndView("member/findAcc");
+        if (Objects.equals(dto.getAuthNum(), session.getAttribute("authNum"))){
+            mav.addObject("userid", memberService.findUsername(dto));
+            session.removeAttribute("authNum");
+        }
+        else {
+            mav.addObject("msg","인증번호가 일치하지 않습니다.");
+        }
+        return mav;
+    }
+
+    @PostMapping("/findPw")
+    public ModelAndView findPw(findMemberDto dto, HttpSession session) {
+        ModelAndView mav = new ModelAndView("member/findAcc");
+        if (Objects.equals(dto.getAuthNum(), session.getAttribute("authNum"))){
+            String newPw = memberService.findPw(dto);
+            if (newPw != null) {
+                mav.addObject("newPw", newPw);
+                session.removeAttribute("authNum");
+            }else{
+                mav.addObject("msg", "해당 아이디와 이메일이 일치하는 계정이 없습니다.");
+            }
+        }
+        else {
+            mav.addObject("msg","인증번호가 일치하지 않습니다.");
+        }
         return mav;
     }
 
@@ -112,10 +147,6 @@ public class MemberController {
 
         if (email == null || email.isEmpty()) {
             return ResponseEntity.badRequest().body("이메일을 입력해주세요.");
-        }
-
-        if (memberRepository.existsByEmail(email)) {
-            return ResponseEntity.badRequest().body("사용할 수 없는 이메일 입니다.");
         }
 
         // 랜덤 인증번호 발생 및 세션에 추가

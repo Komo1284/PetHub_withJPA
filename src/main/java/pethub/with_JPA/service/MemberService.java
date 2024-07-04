@@ -13,6 +13,7 @@ import pethub.with_JPA.aop.PasswordEncoder;
 import pethub.with_JPA.dto.MemberLoginDto;
 import pethub.with_JPA.dto.SignUpDto;
 import pethub.with_JPA.dto.UpdateMemberDto;
+import pethub.with_JPA.dto.findMemberDto;
 import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.repository.MemberRepository;
 
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -112,5 +114,22 @@ public class MemberService {
             result.put("msg", "수정에 실패하였습니다: 알 수 없는 에러가 발생했습니다.");
             return result;
         }
+    }
+
+    public String findUsername(findMemberDto dto) {
+        Member findMember = memberRepository.findByEmail(dto.getEmail());
+        return findMember.getUsername();
+    }
+
+    public String findPw(findMemberDto dto) {
+        Member findMember = memberRepository.findByEmail(dto.getEmail());
+        if(findMember != null){
+            String newPw = UUID.randomUUID().toString().substring(0, 8);
+
+            // 해쉬처리
+            findMember.setNewPassword(PasswordEncoder.encode(newPw));
+            return newPw;
+        }
+        return null;
     }
 }
