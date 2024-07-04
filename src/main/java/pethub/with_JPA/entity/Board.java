@@ -31,4 +31,16 @@ public class Board {
 
     private LocalDateTime w_date = LocalDateTime.now();
     private int v_count = 0;
+
+    public Board(Member member, BoardType type, String title, String content) {
+        this.member = member;
+        this.type = type;
+        this.title = title;
+        this.content = content;
+    }
+
+    // 게시글 조회시 조회수 증가
+    public void incrementViewCount() {
+        v_count += 1;
+    }
 }
