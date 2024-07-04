@@ -54,4 +54,8 @@ public class BoardService {
         Board board = boardRepository.findById(id).get();
         board.update(dto);
     }
+
+    public Page<BoardListDto> whatIWroteBoard(BoardSearchCondition condition, Pageable pageable, Long id) {
+        return boardRepository.whatIWroteBoard(condition, pageable, id);
+    }
 }

@@ -7,4 +7,5 @@ import pethub.with_JPA.dto.BoardSearchCondition;
 
 public interface BoardRepositoryCustom {
     Page<BoardListDto> searchBoards(BoardSearchCondition condition, Pageable pageable);
+    Page<BoardListDto> whatIWroteBoard(BoardSearchCondition condition, Pageable pageable, Long id);
 }

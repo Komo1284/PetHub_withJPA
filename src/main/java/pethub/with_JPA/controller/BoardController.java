@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pethub.with_JPA.dto.*;
 import pethub.with_JPA.entity.Board;
 import pethub.with_JPA.entity.BoardType;
+import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.entity.Reply;
 import pethub.with_JPA.repository.BoardRepository;
 import pethub.with_JPA.repository.ReplyRepository;
@@ -93,4 +94,20 @@ public class BoardController {
         emailService.sendSimpleMessage(contactForm);
         return "redirect:/board/help";
     }
+
+    @GetMapping("/wroteBoard")
+    public String wroteBoard(Model model, BoardSearchCondition condition,
+                       @PageableDefault(size = 10, page = 0) Pageable pageable,
+                             HttpSession session) {
+        Member user = (Member) session.getAttribute("user");
+        Page<BoardListDto> result = boardService.whatIWroteBoard(condition, pageable,user.getId());
+        model.addAttribute("posts", result.getContent());
+        model.addAttribute("page", result);
+        model.addAttribute("condition", condition);
+
+        return "board/wroteBoard";
+    }
+
+    @GetMapping("/wroteReply")
+    public void wroteReply(Model model) {}
 }

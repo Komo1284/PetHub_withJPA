@@ -53,6 +53,34 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
         return new PageImpl<>(content, pageable, total);
     }
 
+    @Override
+    public Page<BoardListDto> whatIWroteBoard(BoardSearchCondition condition, Pageable pageable, Long id) {
+        List<BoardListDto> content = queryFactory
+                .select(new QBoardListDto(board.id, board.member.nick, board.title,
+                        board.w_date, board.v_count))
+                .from(board)
+                .where(
+                        board.member.id.eq(id),
+                        selectBoardType(condition),
+                        dynamicSearch(condition)
+                )
+                .orderBy(board.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = queryFactory
+                .select(board.count())
+                .from(board)
+                .where(
+                        selectBoardType(condition),
+                        dynamicSearch(condition)
+                )
+                .fetchOne();
+
+        return new PageImpl<>(content, pageable, total);
+    }
+
     private BooleanExpression selectBoardType(BoardSearchCondition condition) {
         if (condition.getBoardType() != null) {
             switch (condition.getBoardType()) {
