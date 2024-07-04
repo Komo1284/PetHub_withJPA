@@ -2,8 +2,12 @@ package pethub.with_JPA.service;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pethub.with_JPA.dto.BoardSearchCondition;
+import pethub.with_JPA.dto.ReplyListDto;
 import pethub.with_JPA.dto.ReplyViewDto;
 import pethub.with_JPA.entity.Board;
 import pethub.with_JPA.entity.Member;
@@ -50,5 +54,9 @@ public class ReplyService {
     public void update(Long id, String content) {
         Reply reply = replyRepository.findById(id).get();
         reply.update(content);
+    }
+
+    public Page<ReplyListDto> whatIWroteBoard(BoardSearchCondition condition, Pageable pageable, Long id) {
+        return replyRepository.whatIWroteReply(condition, pageable, id);
     }
 }

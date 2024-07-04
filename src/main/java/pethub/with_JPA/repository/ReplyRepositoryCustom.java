@@ -7,5 +7,5 @@ import pethub.with_JPA.dto.BoardSearchCondition;
 import pethub.with_JPA.dto.ReplyListDto;
 
 public interface ReplyRepositoryCustom {
-    Page<ReplyListDto> whatIWroteBoard(BoardSearchCondition condition, Pageable pageable, Long id);
+    Page<ReplyListDto> whatIWroteReply(BoardSearchCondition condition, Pageable pageable, Long id);
 }

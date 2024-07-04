@@ -8,6 +8,6 @@ import pethub.with_JPA.entity.Reply;
 import java.util.List;
 
 @Repository
-public interface ReplyRepository extends JpaRepository<Reply, Long> {
+public interface ReplyRepository extends JpaRepository<Reply, Long>, ReplyRepositoryCustom {
     List<Reply> findByBoard(Board board);
 }

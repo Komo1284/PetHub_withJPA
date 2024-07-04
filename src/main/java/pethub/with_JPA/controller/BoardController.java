@@ -100,7 +100,7 @@ public class BoardController {
                        @PageableDefault(size = 10, page = 0) Pageable pageable,
                              HttpSession session) {
         Member user = (Member) session.getAttribute("user");
-        Page<BoardListDto> result = boardService.whatIWroteBoard(condition, pageable,user.getId());
+        Page<BoardListDto> result = boardService.whatIWroteBoard(condition, pageable, user.getId());
         model.addAttribute("posts", result.getContent());
         model.addAttribute("page", result);
         model.addAttribute("condition", condition);
@@ -109,5 +109,15 @@ public class BoardController {
     }
 
     @GetMapping("/wroteReply")
-    public void wroteReply(Model model) {}
+    public String wroteReply(Model model, BoardSearchCondition condition,
+                           @PageableDefault(size = 10, page = 0) Pageable pageable,
+                           HttpSession session) {
+        Member user = (Member) session.getAttribute("user");
+        Page<ReplyListDto> result = replyService.whatIWroteBoard(condition, pageable, user.getId());
+        model.addAttribute("replies", result.getContent());
+        model.addAttribute("page", result);
+        model.addAttribute("condition", condition);
+
+        return "board/wroteReply";
+    }
 }

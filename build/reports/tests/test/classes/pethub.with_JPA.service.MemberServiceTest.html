@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.116s</div>
+<div class="counter">0.130s</div>
 <p>duration</p>
 </div>
 </td>
@@ -77,7 +77,7 @@
 <h3 class="failures">loginTest()</h3>
 <span class="code">
 <pre>org.opentest4j.AssertionFailedError: 
-expected: pethub.with_JPA.entity.Member@72de1d86
+expected: pethub.with_JPA.entity.Member@7585531b
  but was: null
 	at java.base@17.0.8/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base@17.0.8/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
@@ -103,12 +103,12 @@ expected: pethub.with_JPA.entity.Member@72de1d86
 </thead>
 <tr>
 <td class="failures">loginTest()</td>
-<td class="failures">0.102s</td>
+<td class="failures">0.115s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">signUpTest()</td>
-<td class="success">0.014s</td>
+<td class="success">0.015s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -116,20 +116,20 @@ expected: pethub.with_JPA.entity.Member@72de1d86
 <div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2024-07-03T13:56:23.961+09:00  INFO 5131 --- [with-JPA] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pethub.with_JPA.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-07-03T13:56:23.964+09:00  INFO 5131 --- [with-JPA] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pethub.with_JPA.WithJpaApplication for test class pethub.with_JPA.service.MemberServiceTest
-2024-07-03T13:56:23.982+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+<pre>2024-07-04T17:39:49.300+09:00  INFO 9335 --- [with-JPA] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [pethub.with_JPA.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-07-04T17:39:49.303+09:00  INFO 9335 --- [with-JPA] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration pethub.with_JPA.WithJpaApplication for test class pethub.with_JPA.service.MemberServiceTest
+2024-07-04T17:39:49.321+09:00 DEBUG 9335 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
-2024-07-03T13:56:23.985+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982583985 | took 1ms | statement | connection 2| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.323+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389323 | took 1ms | statement | connection 2| url jdbc:h2:tcp://localhost/~/pethub
 insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,default)
 insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1111',NULL,'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&amp;type=sc960_832','MEMBER','test',default);
 hashPw = 33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e
-2024-07-03T13:56:24.037+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-04T17:39:49.388+09:00 DEBUG 9335 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id,
         m1_0.ad,
@@ -150,23 +150,23 @@ hashPw = 33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645
     where
         m1_0.username=? 
         and m1_0.password=?
-2024-07-03T13:56:24.039+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584039 | took 0ms | statement | connection 2| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.390+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389390 | took 0ms | statement | connection 2| url jdbc:h2:tcp://localhost/~/pethub
 select m1_0.member_id,m1_0.ad,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.cart_id,m1_0.email,m1_0.name,m1_0.nick,m1_0.password,m1_0.phone,m1_0.profile,m1_0.role,m1_0.username from member m1_0 where m1_0.username=? and m1_0.password=?
 select m1_0.member_id,m1_0.ad,m1_0.city,m1_0.street,m1_0.zipcode,m1_0.cart_id,m1_0.email,m1_0.name,m1_0.nick,m1_0.password,m1_0.phone,m1_0.profile,m1_0.role,m1_0.username from member m1_0 where m1_0.username='test' and m1_0.password='33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e';
-2024-07-03T13:56:24.066+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584066 | took 0ms | rollback | connection 2| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.418+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389418 | took 0ms | rollback | connection 2| url jdbc:h2:tcp://localhost/~/pethub
 
 ;
-2024-07-03T13:56:24.071+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-04T17:39:49.422+09:00 DEBUG 9335 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
-2024-07-03T13:56:24.072+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584072 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.423+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389423 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
 insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,default)
 insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1111',NULL,'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&amp;type=sc960_832','MEMBER','test',default);
-2024-07-03T13:56:24.074+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-04T17:39:49.425+09:00 DEBUG 9335 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -175,10 +175,10 @@ insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phon
         m1_0.username=? 
     fetch
         first ? rows only
-2024-07-03T13:56:24.075+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584075 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.426+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389426 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
 select m1_0.member_id from member m1_0 where m1_0.username=? fetch first ? rows only
 select m1_0.member_id from member m1_0 where m1_0.username='test1' fetch first 1 rows only;
-2024-07-03T13:56:24.075+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-04T17:39:49.427+09:00 DEBUG 9335 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -187,10 +187,10 @@ select m1_0.member_id from member m1_0 where m1_0.username='test1' fetch first 1
         m1_0.username=? 
     fetch
         first ? rows only
-2024-07-03T13:56:24.076+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584076 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.427+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389427 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
 select m1_0.member_id from member m1_0 where m1_0.username=? fetch first ? rows only
 select m1_0.member_id from member m1_0 where m1_0.username='test' fetch first 1 rows only;
-2024-07-03T13:56:24.077+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-04T17:39:49.428+09:00 DEBUG 9335 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     select
         m1_0.member_id 
     from
@@ -199,20 +199,20 @@ select m1_0.member_id from member m1_0 where m1_0.username='test' fetch first 1 
         m1_0.username=? 
     fetch
         first ? rows only
-2024-07-03T13:56:24.077+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584077 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.429+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389429 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
 select m1_0.member_id from member m1_0 where m1_0.username=? fetch first ? rows only
 select m1_0.member_id from member m1_0 where m1_0.username='test2' fetch first 1 rows only;
-2024-07-03T13:56:24.078+09:00 DEBUG 5131 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
+2024-07-04T17:39:49.430+09:00 DEBUG 9335 --- [with-JPA] [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (ad, city, street, zipcode, cart_id, email, name, nick, password, phone, profile, role, username, member_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
-2024-07-03T13:56:24.079+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584079 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.431+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389431 | took 0ms | statement | connection 3| url jdbc:h2:tcp://localhost/~/pethub
 insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,default)
 insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phone,profile,role,username,member_id) values ('ACCEPT','동래','부산','44444',NULL,'test@gamil.com','테스트','테스트1','33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e','01012341234','https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220112%2Fourlarge%2Fpngtree-cartoon-hand-drawn-default-avatar-png-image_4154232.png&amp;type=sc960_832','MEMBER','test2',default);
-2024-07-03T13:56:24.083+09:00  INFO 5131 --- [with-JPA] [    Test worker] p6spy                                    : #1719982584083 | took 0ms | rollback | connection 3| url jdbc:h2:tcp://localhost/~/pethub
+2024-07-04T17:39:49.434+09:00  INFO 9335 --- [with-JPA] [    Test worker] p6spy                                    : #1720082389434 | took 0ms | rollback | connection 3| url jdbc:h2:tcp://localhost/~/pethub
 
 ;
 </pre>
@@ -226,7 +226,7 @@ insert into member (ad,city,street,zipcode,cart_id,email,name,nick,password,phon
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.8</a> at 2024. 7. 3. 오후 1:56:24</p>
+<a href="http://www.gradle.org">Gradle 8.8</a> at 2024. 7. 4. 오후 5:39:49</p>
 </div>
 </div>
 </body>
