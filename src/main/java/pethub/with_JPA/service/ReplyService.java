@@ -46,4 +46,9 @@ public class ReplyService {
         Board board = boardRepository.findById(id).get();
         replyRepository.save(new Reply(user, board, content));
     }
+
+    public void update(Long id, String content) {
+        Reply reply = replyRepository.findById(id).get();
+        reply.update(content);
+    }
 }

@@ -3,9 +3,13 @@ package pethub.with_JPA.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pethub.with_JPA.entity.Reply;
 import pethub.with_JPA.repository.ReplyRepository;
 import pethub.with_JPA.service.ReplyService;
+
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,6 +25,19 @@ public class ReplyController {
                              HttpSession session) {
         replyService.write(id, content, session);
         return "redirect:/board/view/" + id;
+    }
+
+    @GetMapping("/update/{id}")
+    public String update(Model model, @PathVariable Long id) {
+        Reply reply = replyRepository.findById(id).get();
+        model.addAttribute("reply", reply.getContent());
+        model.addAttribute("reply_id", id);
+        return "board/popUp";
+    }
+
+    @PostMapping("/update/{id}")
+    public void updateReply(@PathVariable Long id, String content) {
+        replyService.update(id, content);
     }
 
     @GetMapping("/delete/{id}")
