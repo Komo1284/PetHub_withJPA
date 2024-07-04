@@ -18,6 +18,7 @@ import pethub.with_JPA.entity.Reply;
 import pethub.with_JPA.repository.BoardRepository;
 import pethub.with_JPA.repository.ReplyRepository;
 import pethub.with_JPA.service.BoardService;
+import pethub.with_JPA.service.EmailService;
 import pethub.with_JPA.service.ReplyService;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class BoardController {
     private final ReplyService replyService;
     private final BoardRepository boardRepository;
     private final ReplyRepository replyRepository;
+    private final EmailService emailService;
 
     @GetMapping("/list")
     public String list(Model model, BoardSearchCondition condition,
@@ -81,5 +83,14 @@ public class BoardController {
     public String delete(@PathVariable Long id) {
         boardRepository.deleteById(id);
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/help")
+    public void help() {}
+
+    @PostMapping("/help")
+    public String help(ContactForm contactForm) {
+        emailService.sendSimpleMessage(contactForm);
+        return "redirect:/board/help";
     }
 }
