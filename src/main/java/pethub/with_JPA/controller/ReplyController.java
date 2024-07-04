@@ -3,10 +3,8 @@ package pethub.with_JPA.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import pethub.with_JPA.repository.ReplyRepository;
 import pethub.with_JPA.service.ReplyService;
 
 @Controller
@@ -15,6 +13,7 @@ import pethub.with_JPA.service.ReplyService;
 public class ReplyController {
 
     private final ReplyService replyService;
+    private final ReplyRepository replyRepository;
 
     @PostMapping("/write/{id}")
     public String writeReply(@PathVariable Long id,
@@ -22,5 +21,11 @@ public class ReplyController {
                              HttpSession session) {
         replyService.write(id, content, session);
         return "redirect:/board/view/" + id;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, String board_id) {
+        replyRepository.deleteById(id);
+        return "redirect:/board/view/" + board_id;
     }
 }
