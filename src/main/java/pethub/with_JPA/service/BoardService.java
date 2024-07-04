@@ -49,4 +49,9 @@ public class BoardService {
                 board.getMember().getId()
         );
     }
+
+    public void update(Long id, WriteBoardDto dto) {
+        Board board = boardRepository.findById(id).get();
+        board.update(dto);
+    }
 }

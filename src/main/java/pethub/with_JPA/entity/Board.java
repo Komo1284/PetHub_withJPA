@@ -3,6 +3,7 @@ package pethub.with_JPA.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pethub.with_JPA.dto.WriteBoardDto;
 
 import java.time.LocalDateTime;
 
@@ -42,5 +43,11 @@ public class Board {
     // 게시글 조회시 조회수 증가
     public void incrementViewCount() {
         v_count += 1;
+    }
+
+    public void update(WriteBoardDto dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+        this.type = dto.getBoardType();
     }
 }

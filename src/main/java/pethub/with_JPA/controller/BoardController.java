@@ -63,12 +63,23 @@ public class BoardController {
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
-        model.addAttribute("board", boardService.view(id));
+        Board board = boardRepository.findById(id).get();
+        WriteBoardDto dto = new WriteBoardDto(board.getTitle(), board.getType(), board.getContent());
+        model.addAttribute("board", dto);
+        model.addAttribute("board_id", id);
+        model.addAttribute("boardTypes", BoardType.values());
         return "board/write";
     }
 
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable Long id, WriteBoardDto dto) {
+        boardService.update(id,dto);
+        return "redirect:/board/view/" + id;
+    }
+
     @GetMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id) {
         boardRepository.deleteById(id);
+        return "redirect:/board/list";
     }
 }

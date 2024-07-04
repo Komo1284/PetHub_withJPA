@@ -21,7 +21,7 @@
         <section class="py-16">
             <div class="container mx-auto px-4 md:px-6">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center">허브에 정보 공유하기!</h1>
-                <form class="max-w-3xl mx-auto grid gap-6" th:action="${row != null} ? @{'/board/updateBd/' + ${row.id}} : @{'/board/write'}"
+                <form class="max-w-3xl mx-auto grid gap-6" th:action="${board != null} ? @{'/board/update/' + ${board_id}} : @{'/board/write'}"
                       method="POST" enctype="multipart/form-data">
                     <div>
                         <label
@@ -35,7 +35,7 @@
                                 id="title"
                                 placeholder="게시글의 제목을 입력하세요."
                                 type="text"
-                                th:name="title" th:value="${row?.title}" th:required
+                                th:name="title" th:value="${board != null ? board.title : ''}" th:required
                         />
                     </div>
                     <div>
@@ -48,12 +48,13 @@
                         <select
                                 id="category"
                                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                name="boardType" th:value="${row?.type}" th:required
+                                name="boardType" th:required
                         >
                             <option value="" disabled selected>카테고리를 선택하세요</option>
                             <option th:each="boardType : ${boardTypes}"
                                     th:value="${boardType.name()}"
-                                    th:text="${boardType.name()}">
+                                    th:text="${boardType.name()}"
+                                    th:selected="${board != null} ? ${board.boardType.name()} == ${boardType.name()} : false">
                             </option>
                         </select>
                     </div>
@@ -68,15 +69,14 @@
                                 id="content"
                                 placeholder="여기에 게시물 컨텐츠를 작성하세요."
                                 rows="20"
-                                th:name="content" th:text="${row?.content}" th:required
+                                th:name="content" th:text="${board != null ? board.content : ''}" th:required
                         ></textarea>
                     </div>
-                    <p><input type="hidden" th:name="member_id" th:value="${row?.member_id != null ? row?.member_id : 0}" required></p>
                     <div class="flex justify-end">
                         <button
                                 class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2 bg-orange-600 hover:bg-orange-500"
                                 type="submit"
-                                th:text="${row != null} ? '수정하기' : '작성하기'"
+                                th:text="${board != null} ? '수정하기' : '작성하기'"
                         >
                             작성하기
                         </button>

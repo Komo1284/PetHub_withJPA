@@ -20,4 +20,10 @@ public class WriteBoardDto {
                 content
         );
     }
+
+    public WriteBoardDto(String title, BoardType boardType, String content) {
+        this.title = title;
+        this.boardType = boardType;
+        this.content = content;
+    }
 }
