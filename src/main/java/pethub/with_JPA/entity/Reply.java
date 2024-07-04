@@ -28,4 +28,10 @@ public class Reply {
     private String content = "내용 없음";
 
     private LocalDateTime w_date = LocalDateTime.now();
+
+    public Reply(Member member, Board board, String content) {
+        this.member = member;
+        this.board = board;
+        this.content = content;
+    }
 }

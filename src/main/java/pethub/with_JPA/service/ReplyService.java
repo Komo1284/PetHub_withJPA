@@ -1,10 +1,12 @@
 package pethub.with_JPA.service;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pethub.with_JPA.dto.ReplyViewDto;
 import pethub.with_JPA.entity.Board;
+import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.entity.Reply;
 import pethub.with_JPA.repository.BoardRepository;
 import pethub.with_JPA.repository.MemberRepository;
@@ -21,6 +23,7 @@ public class ReplyService {
 
     private final BoardRepository boardRepository;
     private final ReplyRepository replyRepository;
+    private final MemberRepository memberRepository;
 
     public List<ReplyViewDto> view(Long id) {
 
@@ -35,6 +38,12 @@ public class ReplyService {
                         reply.getContent(),
                         reply.getMember().getId()
                 )).collect(Collectors.toList());
+    }
 
+    public void write(Long id, String content, HttpSession session) {
+
+        Member user = memberRepository.findById(((Member) session.getAttribute("user")).getId()).get();
+        Board board = boardRepository.findById(id).get();
+        replyRepository.save(new Reply(user, board, content));
     }
 }
