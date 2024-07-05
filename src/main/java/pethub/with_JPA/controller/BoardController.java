@@ -15,14 +15,10 @@ import pethub.with_JPA.dto.*;
 import pethub.with_JPA.entity.Board;
 import pethub.with_JPA.entity.BoardType;
 import pethub.with_JPA.entity.Member;
-import pethub.with_JPA.entity.Reply;
 import pethub.with_JPA.repository.BoardRepository;
-import pethub.with_JPA.repository.ReplyRepository;
 import pethub.with_JPA.service.BoardService;
 import pethub.with_JPA.service.EmailService;
 import pethub.with_JPA.service.ReplyService;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,7 +28,6 @@ public class BoardController {
     private final BoardService boardService;
     private final ReplyService replyService;
     private final BoardRepository boardRepository;
-    private final ReplyRepository replyRepository;
     private final EmailService emailService;
 
     @GetMapping("/list")

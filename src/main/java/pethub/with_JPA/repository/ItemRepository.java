@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pethub.with_JPA.entity.Item;
 
 @Repository
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long>, ItemRepositoryCustom {
 }

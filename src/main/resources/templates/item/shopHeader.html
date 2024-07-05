@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+<body>
+<div class="flex items-center justify-center p-4 bg-white" th:fragment="search">
+    <div class="flex-1 max-w-xl px-4">
+        <form th:action="@{/item/list}" method="get">
+            <div class="flex items-center">
+                <input type="hidden" name="itemType" th:value="${condition.itemType}"/>
+                <input type="hidden" name="itemCategory" th:value="${condition.itemCategory}"/>
+                <input
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="상품을 검색하세요"
+                        type="search"
+                        name="searchValue"
+                        th:value="${condition.searchValue}"
+                />
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 ml-2 text-gray-600"
+                        type="submit">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="h-4 w-4"
+                    >
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="flex justify-center p-4" th:fragment="category">
+    <nav class="flex space-x-2">
+        <div class="relative">
+            <a
+                    href="/item/list"
+                    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 text-orange-600">
+                전체
+            </a>
+
+        </div>
+        <div class="relative" th:each="itemType : ${itemTypes}">
+            <a th:href="@{/item/list(itemType=${itemType})}">
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 text-orange-600"
+                    th:text="${itemType}"
+                    type="button">
+                    Dog
+            </button></a>
+            <!-- 전체 카테고리 메뉴 -->
+            <div class="absolute hidden bg-white p-2 rounded-md shadow-md">
+                <!-- 상세 카테고리 메뉴 아이템 -->
+
+                <div class="flex flex-col space-y-1">
+                    <a th:href="@{/item/list(itemType=${itemType}, itemCategory=${itemCategory})}"
+                       class="text-sm text-gray-600 hover:text-gray-800"
+                       th:each="itemCategory : ${itemCategories}"
+                       th:text="${itemCategory}">
+                        Dog1</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</div>
+</body>
+</html>
