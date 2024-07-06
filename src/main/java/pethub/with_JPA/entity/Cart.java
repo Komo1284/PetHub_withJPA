@@ -20,6 +20,10 @@ public class Cart {
     @OneToOne(mappedBy = "cart")
     private Member member;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    public Cart(Member member) {
+        this.member = member;
+    }
 }

@@ -26,4 +26,14 @@ public class OrderItem {
     private Cart cart;
 
     private int quantity;
+
+    public OrderItem(Item item, int quantity) {
+        this.item = item;
+        this.quantity = quantity;
+    }
+
+    public void setCartEach(Cart cart) {
+        this.cart = cart;
+        cart.getOrderItems().add(this);
+    }
 }

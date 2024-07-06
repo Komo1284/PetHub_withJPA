@@ -17,12 +17,16 @@
             <div class="md:col-span-2">
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h2 class="text-2xl font-semibold mb-4">장바구니</h2><br>
-                    <div class="space-y-4" th:each="row : ${list}">
+                    <th:block th:if="${orderItems == null}">
+                        <h4>장바구니가 비어있습니다.</h4>
+                    </th:block>
+                    <th:block th:if="${orderItems != null}">
+                    <div class="space-y-4" th:each="orderItem : ${orderItems}">
                         <ul class="space-y-4">
                             <li class="flex items-center justify-between gap-4">
                                 <div class="flex items-center gap-4">
                                     <img
-                                            th:src="${row.item_pic}"
+                                            th:src="${orderItem.item.itemProfile}"
                                             alt="Product Image"
                                             width="100"
                                             height="100"
@@ -35,17 +39,17 @@
                                         <h3 class="text-lg font-semibold">주문 번호: <a th:text="${row.order_id}"></a></h3>
                                         <h3 class="text-lg font-semibold">상품 번호: <a th:text="${row.order_item}"></a></h3>-->
 
-                                        <h3 class="text-lg font-semibold">상품 명: <a th:text="${row.item_name}"></a></h3>
+                                        <h3 class="text-lg font-semibold">상품 명: <a th:text="${orderItem.item.itemName}"></a></h3>
 
-                                        <p class="text-gray-500">합계 가격: <span th:text="${row.order_price*row.count} + ' 원'"></span></p>
+                                        <p class="text-gray-500">합계 가격: <span th:text="${orderItem.item.price*orderItem.quantity} + ' 원'"></span></p>
                                         <div class="flex items-center gap-2">
                                             <h3>수량:</h3>
                                             <input type="number"
                                                    class="appearance-none border rounded-md w-20 h-9 px-3 text-sm text-center text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
-                                                   th:value="${row.count}" min="1" th:name="'count'" th:id="'count_' + ${row.id}">
+                                                   th:value="${orderItem.quantity}" min="1" th:name="'quantity'" th:id="'count_' + ${orderItem.id}">
                                             <button
                                                     class="quantity_modify_btn inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-400 text-primary-foreground hover:bg-blue-300/90 h-9 rounded-md px-3"
-                                                    th:data-product-id="${row.id}"
+                                                    th:data-product-id="${orderItem.id}"
                                             >
                                                 <svg
                                                         xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +68,8 @@
                                                 </svg>
                                                 수정
                                             </button>
-                                            <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-red-400 text-destructive-foreground hover:bg-red-300/90 h-9 rounded-md px-3" th:onclick="|location.href='/order/delete/' + ${row.order_id}|">
+                                            <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-red-400 text-destructive-foreground hover:bg-red-300/90 h-9 rounded-md px-3"
+                                                    th:onclick="|location.href='/order/delete/' + ${orderItem.id}|">
                                                 <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         width="24"
@@ -90,11 +95,12 @@
                             <hr>
                         </ul>
                     </div>
+                    </th:block>
                 </div>
             </div>
 
             <!-- 주문 요약 섹션 -->
-            <div class="md:col-span-1" th:if="${not #lists.isEmpty(list)}">
+            <div class="md:col-span-1">
                 <form method="POST">
                     <div class="bg-gray-100 p-4 rounded-md">
                         <h3 class="text-lg font-semibold mb-2">주문 요약</h3>
