@@ -21,13 +21,13 @@
         <div class="flex-1 p-4 md:p-6 mx-8 mt-16 max-w-[900px] mx-auto">
             <div class="bg-white rounded-lg shadow-md p-6 mb-4">
                 <h2 class="text-2xl font-semibold mb-4">주문 현황</h2><br>
-                <div class="grid grid-cols-1 gap-6" th:each="row : ${list}">
+                <div class="grid grid-cols-1 gap-6" th:each="orderItem : ${orderItems}">
                     <div class="mr-12">
                         <ul class="space-y-4">
                             <li class="flex items-center justify-between gap-4">
                                 <div class="flex items-center gap-4">
                                     <img
-                                            th:src="${row.pic}"
+                                            th:src="${orderItem.item.itemProfile}"
                                             alt="Product Image"
                                             width="100"
                                             height="100"
@@ -35,17 +35,17 @@
                                             style="aspect-ratio: 100 / 100; object-fit: cover;"
                                     />
                                     <div>
-                                        <h3 class="detail text-lg font-semibold">주문 번호: <span class="order_id"
-                                                                                       th:text="${row.order_id}"></span>
+                                        <h3 class="detail text-lg font-semibold"><span class="order_id"
+                                                                                       th:text="${session.user.nick}"></span> 님의 주문
                                         </h3>
                                         <h3 class="detail text-lg font-semibold">상품 번호: <span
-                                                th:text="${row.order_item}"></span></h3>
+                                                th:text="${orderItem.id}"></span></h3>
                                         <p class="text-lg font-semibold">상품 명: <span
-                                                th:text="${row.item_name}"></span></p>
+                                                th:text="${orderItem.item.itemName}"></span></p>
                                         <p class="text-gray-500">합계 가격: <span
-                                                th:text="${row.order_price*row.count}"></span></p>
+                                                th:text="${orderItem.item.price*orderItem.quantity}"></span></p>
                                         <div class="flex items-center gap-2">
-                                            <h3>수량: <span th:text="${row.count}"></span></h3>
+                                            <h3>수량: <span th:text="${orderItem.quantity}"></span></h3>
 
                                         </div>
                                     </div>
@@ -65,11 +65,11 @@
                                 <div class="flex items-center gap-4">
                                     <div>
                                         <h3 id="customerName" class="text-lg font-semibold">고객 이름: <span
-                                                th:text="${list[0].member_name}"></span></h3>
+                                                th:text="${session.user.name}"></span></h3>
                                         <h3 id="customerPhone" class="text-lg font-semibold">고객 전화번호: <span
-                                                th:text="${list[0].member_phone}"></span></h3>
+                                                th:text="${session.user.phone}"></span></h3>
                                         <h3 id="customerEmail" class="text-lg font-semibold">고객 이메일: <span
-                                                th:text="${list[0].member_email}"></span></h3>
+                                                th:text="${session.user.email}"></span></h3>
 
                                         <h3>배송 주소: 미입력시 회원가입시 기입한 주소로 배송됩니다.</h3><br>
                                         <form name="insert">
@@ -87,7 +87,8 @@
                                                                 id="zip_code"
                                                                 type="text"
                                                                 placeholder="주소를 검색해주세요."
-                                                                name="zip_code"
+                                                                name="zipcode"
+                                                                th:value="${session.user.address.zipcode}"
                                                                 readonly
                                                         />
                                                     </div>
@@ -121,7 +122,8 @@
                                                                 placeholder="주소를 검색해주세요."
                                                                 required=""
                                                                 type="text"
-                                                                name="primary_address"
+                                                                name="city"
+                                                                th:value="${session.user.address.city}"
                                                                 readonly
                                                         />
                                                     </div>
@@ -138,21 +140,14 @@
                                                                 placeholder="상세주소를 입력해주세요."
                                                                 required=""
                                                                 type="text"
-                                                                name="address_details">
+                                                                name="street"
+                                                                th:value="${session.user.address.street}"
+                                                        >
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
                                         <div>
-                                        <button
-                                                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-orange-600 text-white hover:bg-orange-500/90 rounded-md"
-                                                type="button"
-                                        >
-                                            <a class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-orange-600 text-white hover:bg-orange-500/90 rounded-md delivery_modify_btn" th:data-product-id="${list[0].delivery_id}" style="width: 150px; height: 40px;">
-                                                배송지 수정
-                                            </a>
-
-                                        </button>
                                         </div>
                                     </div>
                                 </div>
