@@ -26,23 +26,36 @@ public class CartService {
     private final OrderItemRepository orderItemRepository;
     private final EntityManager entityManager;
 
-    public void addItem(Long itemId, Long memberId, int quantity) {
+    public String addItem(Long itemId, Long memberId, int quantity) {
+
         Item item = itemRepository.findById(itemId).get();
         Member member = memberRepository.findById(memberId).get();
 
-        Cart cart = new Cart();
-        member.setCart(cart);
-
-        entityManager.flush();
-        entityManager.clear();
+        List<OrderItem> byCart = orderItemRepository.findByCart(member.getCart());
+        for (OrderItem orderItem : byCart) {
+            if (orderItem.getItem().getId() == itemId){
+                return "redirect:/order/cart";
+            }
+        }
 
         OrderItem orderItem = new OrderItem(item, quantity);
         OrderItem savedOrderItem = orderItemRepository.save(orderItem);
         savedOrderItem.setCartEach(member.getCart());
+        return "redirect:/item/detailPage/" + itemId;
     }
 
     public List<OrderItem> showCart(Long memberId) {
         Member member = memberRepository.findById(memberId).get();
         return member.getCart().getOrderItems();
+    }
+
+    public void buyItem(Long itemId, Long memberId, int quantity) {
+
+        Item item = itemRepository.findById(itemId).get();
+        Member member = memberRepository.findById(memberId).get();
+
+        OrderItem orderItem = new OrderItem(item, quantity);
+        OrderItem savedOrderItem = orderItemRepository.save(orderItem);
+        savedOrderItem.setCartEach(member.getCart());
     }
 }

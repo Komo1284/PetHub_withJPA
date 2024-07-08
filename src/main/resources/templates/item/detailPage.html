@@ -43,8 +43,7 @@
                                 장바구니에 추가
                             </button>
                             <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-red-400 text-destructive-foreground hover:bg-red-300/90 h-9 rounded-md px-3 flex-grow w-32"
-                                    type="button" onclick="submitForm(this.getAttribute('data-product-id'))"
-                                    th:attr="data-product-id=${item.id}">
+                                    type="submit" th:formaction="@{'/cart/buy/' + ${item.id}}">
                                 구매하기
                             </button>
                         </div>
@@ -176,7 +175,7 @@
     function submitForm(productId) {
         var form = document.createElement('form');
         form.method = 'POST';
-        form.action = '/shop/onebuy/' + productId;
+        form.action = '/cart/buy/' + productId;
         var hiddenInput = document.createElement('input');
         hiddenInput.type = 'hidden';
         hiddenInput.name = 'quantity';

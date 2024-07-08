@@ -36,4 +36,8 @@ public class OrderItem {
         this.cart = cart;
         cart.getOrderItems().add(this);
     }
+
+    public void updateQuantity(int count) {
+        this.quantity = count;
+    }
 }
