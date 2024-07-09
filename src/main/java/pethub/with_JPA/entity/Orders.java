@@ -29,6 +29,8 @@ public class Orders {
 
     private LocalDateTime order_date = LocalDateTime.now();
 
+    private int totalPrice;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus = OrderStatus.ORDER;
 
@@ -40,5 +42,15 @@ public class Orders {
         if (orderStatus == null) {
             orderStatus = OrderStatus.ORDER;
         }
+    }
+
+    public Orders(Member member, Address delivery_address, int totalPrice) {
+        this.member = member;
+        this.delivery_address = delivery_address;
+        this.totalPrice = totalPrice;
+    }
+
+    public void changeCartToOrder(List<OrderItem> byCart) {
+        this.orderItems = byCart;
     }
 }

@@ -40,4 +40,9 @@ public class OrderItem {
     public void updateQuantity(int count) {
         this.quantity = count;
     }
+
+    public void changeOrder(Orders order) {
+        this.cart = null;
+        this.order = order;
+    }
 }

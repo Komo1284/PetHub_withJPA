@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pethub.with_JPA.entity.Address;
 import pethub.with_JPA.entity.Member;
 import pethub.with_JPA.entity.Orders;
 import pethub.with_JPA.service.CartService;
@@ -28,7 +29,11 @@ public class OrderController {
     }
 
     @PostMapping
-    public String order(Model model, Orders order) {
-        return null;
+    public String order(Model model, String city, String street, String zipcode, int totalPrice, HttpSession session) {
+        Member user = (Member) session.getAttribute("user");
+        Address address = new Address(street, city, zipcode);
+        Orders order = orderService.order(user.getId(), address, totalPrice);
+        model.addAttribute("order", order);
+        return "order/orderCheck";
     }
 }
