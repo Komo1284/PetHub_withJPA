@@ -1,17 +1,17 @@
 package pethub.with_JPA.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import pethub.with_JPA.dto.AddItemDto;
-import pethub.with_JPA.entity.ItemCategory;
-import pethub.with_JPA.entity.ItemType;
-import pethub.with_JPA.entity.Member;
-import pethub.with_JPA.entity.Role;
+import pethub.with_JPA.dto.*;
+import pethub.with_JPA.entity.*;
 import pethub.with_JPA.repository.MemberRepository;
 import pethub.with_JPA.service.AdminService;
 import pethub.with_JPA.service.ImageService;
@@ -29,7 +29,8 @@ public class AdminController {
     private final AdminService adminService;
 
     @GetMapping("/insert")
-    public void adminInsert() {}
+    public void adminInsert() {
+    }
 
     @PostMapping("/insert")
     @Transactional
@@ -76,23 +77,18 @@ public class AdminController {
         return mav;
     }
 
-//    @GetMapping("/manage_orders/{id}")
-//    public ModelAndView adminManageOrders(@PathVariable("id") int id) {
-//        ModelAndView mav = new ModelAndView("admin/manage_orders");
-//        String msg="주문 접수";
-//
-//        if(id ==2) msg="결제 완료";
-//        else if (id == 3) msg="상품 준비중";
-//        else if (id == 4) msg="주문 취소";
-//        else if (id == 5) msg="반품 요청";
-//        else if (id == 6) msg="반품 완료";
-//        else if (id == 7) msg="배송중";
-//        else if (id == 8) msg="배송완료";
-//
-//
-//        mav.addObject("list", adminService.selectAll(msg));
-//
-//        return mav;
+    @GetMapping("/manage_orders")
+    public String adminManageOrders(Model model,
+                                    @RequestParam(required = false) String orderStatus,
+                                    @PageableDefault(size = 8, page = 0) Pageable pageable) {
 
-//    }
+        Page<Orders> result = adminService.searchOrders(orderStatus, pageable);
+
+        model.addAttribute("orderStatuses", OrderStatus.values());
+        model.addAttribute("orders", result.getContent());
+        model.addAttribute("page", result);
+        model.addAttribute("status", orderStatus);
+
+        return "admin/manage_orders";
+    }
 }
