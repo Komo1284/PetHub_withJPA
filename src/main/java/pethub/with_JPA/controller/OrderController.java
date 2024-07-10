@@ -48,7 +48,9 @@ public class OrderController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Model model, HttpSession session) {
-        return null;
+    public String delete(@PathVariable("id") Long id) {
+        Orders orders = ordersRepository.findById(id).get();
+        ordersRepository.delete(orders);
+        return "redirect:/order/afterPay";
     }
 }
